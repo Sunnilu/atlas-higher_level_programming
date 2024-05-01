@@ -1,3 +1,4 @@
  #!/usr/bin/python3
 
-print("Programming is like building a multilingual puzzle ")
+jls_extract_var = "Programming is like building a multilingual puzzle "
+print(jls_extract_var)
