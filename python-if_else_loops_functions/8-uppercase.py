@@ -6,6 +6,4 @@ def uppercase(str):
         print("{}".format(i), end="")
     print()  # Print a newline after processing the entire string
 
-# Test the function
-uppercase("Hello, World!")  # Output: HELLO, WORLD!
 
