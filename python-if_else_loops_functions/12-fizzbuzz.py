@@ -11,7 +11,7 @@ def fizzbuzz():
             print("{} ".format(number), end="")
     print()  # Print a newline after processing all numbers
 
-# Test the function
-fizzbuzz()
+
+
 
 
