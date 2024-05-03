@@ -1,3 +1,3 @@
-#!/usr/bin/phython3
+#!/usr/bin/bash
 for i in range(ord('a'), ord('z')+1):
     print(chr(i), end='')
