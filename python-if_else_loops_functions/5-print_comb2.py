@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-for num in range(0, 99):
-    print('{:02d}, '.format(num), end='')
+for i in range(0, 99):
+    print("{}, {}".format(i, hex(i)[2:].zfill(2)))
     print('99')
