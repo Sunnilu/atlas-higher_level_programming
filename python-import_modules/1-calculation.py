@@ -12,3 +12,4 @@ if __name__ == "__main__":
     print("10 - 5 =", subtraction_result)
     print("10 * 5 =", multiplication_result)
     print("10 / 5 =", division_result)
+    
