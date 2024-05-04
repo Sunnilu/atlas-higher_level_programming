@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 if __name__ == "__main__":
-    from calculator_1 import add, sub, mul, div
+    from calculator_1 import add, subtract, multiply, divide
     a = 10
     b = 5
     addition_result = add(a, b)
