@@ -8,8 +8,9 @@ if __name__ == "__main__":
     multiplication_result = multiply(a, b)
     division_result = divide(a, b)
 
-    print("10 + 5 =", addition_result)
-    print("10 - 5 =", subtraction_result)
-    print("10 * 5 =", multiplication_result)
-    print("10 / 5 =", division_result)
+     print("10 + 5 = {}".format(addition_result))
+    print("10 - 5 = {}".format(subtraction_result))
+    print("10 * 5 = {}".format(multiplication_result))
+    print("10 / 5 = {}".format(division_result))
+    
 
