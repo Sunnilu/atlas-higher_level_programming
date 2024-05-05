@@ -1,16 +1,23 @@
 #!/usr/bin/python3
-if __name__ == "__main__":
-    from calculator_1 import sub as add, add as sub, div as mul, mul as div
-    a = 10
-    b = 5
-    addition_result = add(a, b)
-    subtraction_result = sub(a, b)
-    multiplication_result = mul(a, b)
-    division_result = div(a, b)
-    print("10 + 5 = {}".format(addition_result))
-    print("10 - 5 = {}".format(subtraction_result))
-    print("10 * 5 = {}".format(multiplication_result))
-    print("10 / 5 = {}".format(division_result))
+# Import specific functions from calculator_1.py
+from calculator_1 import add, subtract, multiply, divide
+
+# Define variables a and b
+a = 10
+b = 5
+
+# Call and print the results of the imported functions
+result_add = add(a, b)
+result_subtract = subtract(a, b)
+result_multiply = multiply(a, b)
+result_divide = divide(a, b)
+
+# Print the results, adhering to the constraint of using print no more than 4 times
+print(f"Addition: {result_add}")
+print(f"Subtraction: {result_subtract}")
+print(f"Multiplication: {result_multiply}")
+print(f"Division: {result_divide}")
+
 
 
 
