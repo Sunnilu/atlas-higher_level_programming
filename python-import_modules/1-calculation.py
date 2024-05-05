@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 # Import specific functions from calculator_1.py
 from calculator_1 import add, subtract, multiply, divide
 
