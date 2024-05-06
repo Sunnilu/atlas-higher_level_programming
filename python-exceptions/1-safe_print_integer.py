@@ -5,9 +5,10 @@ def safe_print_integer(value):
             for v in value:
                 try:
                     print("{:d}".format(v))
-                    return True
+            
                 except ValueError:
                     continue
+            return True
         else:
             print("{d:}".format(value))
             return True
