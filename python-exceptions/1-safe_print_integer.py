@@ -8,9 +8,11 @@ def safe_print_integer(value):
                 except ValueError:
                     continue
             return True
-        else:
+        elif isinstance(value,int):
             print("{:d}".format(value))
             return True
+        else:
+            return False
     except TypeError:
         return False
 
