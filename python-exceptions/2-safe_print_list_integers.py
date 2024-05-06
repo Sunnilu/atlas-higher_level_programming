@@ -1,21 +1,18 @@
 #!/usr/bin/python3
 def safe_print_list_integers(my_list=[], x=0):
     count = 0
-    # First, count the number of integers in the list
-    for item in my_list:
-        if isinstance(item, int):
-            count += 1
-    # Now, print the integers up to x
-    for item in my_list:
+    for i in range(x):  # Adjusted to iterate up to x
         try:
-            if isinstance(item, int):
-                print("{:d}".format(item), end="")
-                count -= 1
-                if count == 0:
+            if isinstance(my_list[i], int):
+                print("{:d}".format(my_list[i]), end="")
+                count += 1
+                if count == x:
                     break
-        except TypeError:
+        except IndexError:
+            # This block is intentionally left empty because we're not supposed to handle non-integer values explicitly
             pass
     return count
+
 
 
 
