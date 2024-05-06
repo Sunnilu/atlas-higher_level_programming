@@ -5,12 +5,12 @@ def safe_print_integer(value):
             for v in value:
                 try:
                     print("{:d}".format(v))
-            
                 except ValueError:
                     continue
             return True
         else:
-            print("{d:}".format(value))
+            print("{:d}".format(value))
             return True
-        except TypeError:
-            return False
+    except TypeError:
+        return False
+
