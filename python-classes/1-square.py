@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 class Square:
-    ''' defines a square specific size
+    ''' this module defines a square class for representing a square shape.
     attributes: _size (int): the size of the square's size '''
     def __init__(self, size):
        ''' initialize a new square object
