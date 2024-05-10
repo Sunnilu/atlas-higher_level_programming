@@ -6,6 +6,6 @@ class Square:
        ''' initialize a new square object
        parameters:
        _size (int): the size of the square's side. '''
-       self._size = size
+       self.__size = size
     def area(self):
-        return self._size ** 2
+        return self.__size ** 2
