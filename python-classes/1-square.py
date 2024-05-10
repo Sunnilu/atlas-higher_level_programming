@@ -7,3 +7,5 @@ class Square:
        parameters:
        _size (int): the size of the square's side. '''
        self._size = size
+    def area(self):
+        return self.__size ** 2
