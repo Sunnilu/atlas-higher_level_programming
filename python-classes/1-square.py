@@ -32,8 +32,13 @@ class Square:
 
         Parameters:
             new_size (int): the new size for the square's side.
+        Raises:
+            ValueError: if the new size is not a positive integer.
         '''
-
+        if isinstance(new_size, int) and new_size > 0:
+            self.__size=new_size
+        else:
+            raise ValueError("Error: size must be a positive integer.")
         if new_size > 0:
             self.__size = new_size
         else:
