@@ -53,4 +53,9 @@ class Square:
         '''
         return self.__size ** 2
 
+test:
+mysquare=Square(3)
+print(type(mysquare))#output: <class'__main__Square'>
+
+
     
