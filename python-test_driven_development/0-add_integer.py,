@@ -1,0 +1,5 @@
+#!/usr/bin/python3
+''' modue for add_integer method '''
+
+def add_integer(a, b=98):
+
