@@ -12,14 +12,15 @@ class Square:
         self.size = size
 
     @property
-    def size(self):
-        ''' property for the length of a side of this square.
+    def dict (self):
+        ''' property to access the attributes of the square as a dictionary. '''
+        return {'size': self.__size}
 
         Raises:
             TypeError: if size is not an integer.
             ValueError: if size is less than 0.
         '''
-        return self.__size
+        return the size squared
 
     size.setter
     def size(self, value):
