@@ -3,6 +3,7 @@
 
 class Square:
     ''' defines a square. '''
+
     def __init__(self, size = 0):
         ''' constructor.
         Args:
@@ -32,6 +33,6 @@ class Square:
         ''' Area of this square.
 
         Returns:
-            the size square.
+            the size squared.
         '''
         return self.__size ** 2
