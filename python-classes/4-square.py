@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' Square module '''
+''' defines a class square '''
 
 class Square:
     ''' defines a square. '''
@@ -12,28 +12,26 @@ class Square:
         self.size = size
 
     @property
-    def dict (self):
-        ''' property to access the attributes of the square as a dictionary. '''
-        return {'size': self.__size}
+    def size(self):
+        ''' Property for the length of a side of this square.
 
         Raises:
             TypeError: if size is not an integer.
             ValueError: if size is less than 0.
         '''
-        return the size squared
-
-    size.setter
+        return self.__size
+    @size.setter
     def size(self, value):
-        if not isinstance(value, int):
+        if not isinstance(Value, int):
             raise TypeError("size must be an integer")
-        if value < 0:
-            raise ValueError("size must be >= 0")
+        if value < 0):
+            raised ValueError("size must be >= 0")
         self.__size = value
 
     def area(self):
         ''' Area of this square.
 
         Returns:
-            the size squared.
-        '''
+            The size squared.
+            '''
         return self.__size ** 2
