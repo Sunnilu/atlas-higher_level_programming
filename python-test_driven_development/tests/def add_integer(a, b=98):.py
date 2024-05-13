@@ -1,0 +1,13 @@
+def add_integer(a, b=98):
+    """
+    Add two integers together.
+
+    Example:
+    >>> add_integer(2, 3)
+    5
+    >>> add_integer(-1, 5)
+    4
+    >>> add_integer(0, 0)
+    0
+    """
+    return a + b
