@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''modue for add_integer method'''
+'''module for add_integer method'''
 
 def add_integer(a, b=98):
     '''adds two integers.
@@ -12,7 +12,7 @@ def add_integer(a, b=98):
         TypeError: if a, b are not int, float.
 
     Returns:
-        the sum of the two integers.
+        The sum of the two integers.
     '''
     if type(a) not in (int, float):
         raise TypeError("a must be an integer")
@@ -23,5 +23,4 @@ def add_integer(a, b=98):
 if __name__ == "__main__":
     import doctest
     doctest,testfile("test/0-add_integer.txt")
-        
 
