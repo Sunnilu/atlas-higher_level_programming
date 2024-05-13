@@ -1,0 +1,17 @@
+# Test cases for text_indentation function
+
+>>> text_indentation("This is a paragraph. It contains multiple sentences. Each sentence should be on a new line.")
+This is a paragraph.
+It contains multiple sentences.
+Each sentence should be on a new line.
+
+>>> text_indentation("Hello! How are you? I'm fine, thank you.")
+Hello!
+How are you?
+I'm fine, thank you.
+
+>>> text_indentation("This is a test.")
+This is a test.
+
+>>> text_indentation("")
+
