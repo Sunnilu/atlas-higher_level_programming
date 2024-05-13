@@ -1,0 +1,18 @@
+# Test cases for print_square function
+
+>>> print_square(5)
+1
+4
+9
+16
+25
+
+>>> print_square(0)
+1
+
+>>> print_square(-3)
+9
+
+>>> print_square(2.5)
+4
+
