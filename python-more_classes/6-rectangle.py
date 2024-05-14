@@ -28,7 +28,7 @@ class Rectangle:
 
     @property
     def width(self):
-        return self._width
+        return self.__width
 
     @width.setter
     def width(self, value):
@@ -36,11 +36,11 @@ class Rectangle:
             raise TypeError("width must be an integer")
         if value < 0:
             raise ValueError("width must be >= 0")
-        self._width = value
+        self.__width = value
 
     @property
     def height(self):
-        return self._height
+        return self.__height
 
     @height.setter
     def height(self, value):
@@ -48,36 +48,38 @@ class Rectangle:
             raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
-        self._height = value
+        self.__height = value
 
     def area(self):
-        return self._width * self._height
+        return self.__width * self.__height
 
     def perimeter(self):
-        if self._width == 0 or self._height == 0:
+        if self.__width == 0 or self.__height == 0:
             return 0
-        return 2 * (self._width + self._height)
+        return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        if self._width == 0 or self._height == 0:
+        if self.__width == 0 or self.__height == 0:
             return ""
-        return "\n".join(["#" * self._width] * self._height)
+        return '\n'.join(['#' * self.__width] * self.__height)
 
     def __repr__(self):
-        return f"Rectangle({self._width}, {self._height})"
+        return "Rectangle({}, {})".format(self.__width, self.__height)
 
     def __del__(self):
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
 
 # Example usage
-r1 = Rectangle(2, 4)
-print(r1)
-print(f"Area: {r1.area()} - Perimeter: {r1.perimeter()}")
-r2 = Rectangle(3, 5)
-print(r2)
-print(f"Area: {r2.area()} - Perimeter: {r2.perimeter()}")
+if __name__ == "__main__":
+    r1 = Rectangle(2, 4)
+    print(r1)
+    print(f"Area: {r1.area()} - Perimeter: {r1.perimeter()}")
+    r2 = Rectangle(3, 5)
+    print(r2)
+    print(f"Area: {r2.area()} - Perimeter: {r2.perimeter()}")
 
-# Deleting instances
-del r1
-del r2
+    # Deleting instances
+    del r1
+    del r2
+    print(f"{Rectangle.number_of_instances} instances of Rectangle")
