@@ -82,4 +82,3 @@ print(f"Area: {r2.area()} - Perimeter: {r2.perimeter()}")
 # Deleting instances
 del r1
 del r2
- 
