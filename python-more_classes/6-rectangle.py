@@ -24,7 +24,7 @@ class Rectangle:
     @property
     def width(self):
         '''getter for the private instance attribute width'''
-        returnself.__width
+        return self.__width
 
     @width.setter
     def width(self, value):
