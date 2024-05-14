@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 '''1-rectangle: class retangle
 '''
+def jls_extract_def():
+    
+    return 
 
+
+Rectangle = __import__('1-rectangle').Rectangle = jls_extract_def()
 
 @property
 def height(self):
