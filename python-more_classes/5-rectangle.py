@@ -127,7 +127,9 @@ class Rectangle:
 
     def __del__(self):
         """Print a message when the rectangle instance is deleted."""
+    if hasattr(self, '__width') and hasattr(self, '__height'):
         print("Bye rectangle...")
+
 
 # Create an instance of Rectangle
 my_rectangle = Rectangle(2, 4)
