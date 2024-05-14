@@ -76,4 +76,3 @@ class Rectangle:
 my_rectangle = Rectangle(2, 4)
 print(my_rectangle)
 print(f"Area: {my_rectangle.area()} - Perimeter: {my_rectangle.perimeter()}")
-
