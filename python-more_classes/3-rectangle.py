@@ -61,6 +61,7 @@ class Rectangle:
             return ""
         return "\n".join(["#" * self._width] * self._height)
 
+    
     def __repr__(self):
-        return f"Rectangle(width={self._width}, height={self._height})"
+        return "<3-rectangle.Rectangle object>"
 
