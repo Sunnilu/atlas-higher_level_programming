@@ -2,6 +2,7 @@
 '''0-rectangle: class Rectangle
 '''
 
+
 class Rectangle:
     '''empty class'''
     pass
