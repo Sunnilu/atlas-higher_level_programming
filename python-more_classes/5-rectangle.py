@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-'''3-rectangle: class Rectangle
+'''5-rectangle: class Rectangle
 '''
-
 
 class Rectangle:
     '''
@@ -9,17 +8,16 @@ class Rectangle:
     Represents a rectangle with specified width and height.
 
     Attributes:
-        _width (int): the width of the rectangle.
-        _height (int): the height of the rectangle.
+         _width (int): the width of the rectangle.
+         _height (int): the height of the rectangle.
 
     Methods:
         width: property to get the width of the rectangle.
-        Width(value): property setterto set the width of the rectangle.
+        width(value): property setter to set the width of the rectangle.
         height: property to get the height of the rectangle.
         height(value): property setter to set the height of the rectangle.
     '''
 
-    
     def __init__(self, width=0, height=0):
         self._width = width
         self._height = height
@@ -61,8 +59,9 @@ class Rectangle:
             return ""
         return "\n".join(["#" * self._width] * self._height)
 
-    
     def __repr__(self):
-        return "<3-rectangle.Rectangle object>"
-        
+        return f"Rectangle({self._width}, {self._height})"
+
+    def __del__(self):
+        print("Bye rectangle...")
 
