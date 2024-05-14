@@ -64,7 +64,3 @@ class Rectangle:
 
     def __del__(self):
         print("Bye rectangle...")
-
-# Example usage
-my_rectangle = Rectangle(2, 4)
-print(f"Area: {my_rectangle.area()} - Perimeter: {my_rectangle.perimeter()}")
