@@ -80,10 +80,6 @@ class Rectangle:
           raise ValueError("height must be >= 0")
         self._height = value
 
-# Attempt to create a Rectangle instance with invalid parameters
-try:
-    my_rectangle = Rectangle(2, -3)
-except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))   
+     
 
 
