@@ -18,7 +18,6 @@ class Rectangle:
         height(value): property setter to set the height of the rectangle.
     '''
 
-    
     def __init__(self, width=0, height=0):
         self._width = width
         self._height = height
@@ -65,6 +64,11 @@ class Rectangle:
 
     def __del__(self):
         print("Bye rectangle...")
+
+# Example usage
+my_rectangle = Rectangle(2, 4)
+print(f"Area: {my_rectangle.area()} - Perimeter: {my_rectangle.perimeter()}")
+
 
 # Ensure my_rectangle is defined before any operation or print statement that uses it
 my_rectangle = Rectangle(2, 4)
