@@ -16,7 +16,7 @@ class Rectangle:
         Rectangle.number_of_instances += 1
 
     @height.setter
-def height(self, value):
+    def height(self, value):
     '''setter for the private instance attribute of height'''
     if type(value) is not int:
         raise TypeError("height must be an integer")
