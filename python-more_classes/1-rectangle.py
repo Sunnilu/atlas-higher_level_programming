@@ -16,7 +16,6 @@ class Rectangle:
         height: Property to get the height of the rectangle.
         height(value): Property setter to set the height of the rectangle.
     """
-
     def __init__(self, width=0, height=0):
         '''
         initializes the rectangle'''
