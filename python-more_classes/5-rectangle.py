@@ -18,7 +18,6 @@ class Rectangle:
         height(value): property setter to set the height of the rectangle.
     '''
 
-
     def __init__(self, width=0, height=0):
         """
         Initialize a Rectangle instance.
@@ -130,10 +129,11 @@ class Rectangle:
         """Print a message when the rectangle instance is deleted."""
         print("Bye rectangle...")
 
-# Define my_rectangle
-my_rectangle = Rectangle(10, 5)  # Example dimensions: width=10, height=5
+# Create an instance of Rectangle
+my_rectangle = Rectangle(2, 4)
 
+# Calculate and print area and perimeter
+print("Area:", my_rectangle.area(), "- Perimeter:", my_rectangle.perimeter())
 
-
-
-
+# Delete the rectangle instance
+del my_rectangle
