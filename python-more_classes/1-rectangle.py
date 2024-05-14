@@ -3,9 +3,18 @@
 '''
 
 
+def jls_extract_def():
+    jls_extract_var = '''myrectangle = rectangle(2, -3)except Exception as e:print("[{}]{}".format(e.class.name_.e))
+                '''
+    return jls_extract_var
+
+
+def jls_extract_def():
+    return jls_extract_def()
+
+
 class Rectangle:
-    '''myrectangle(-2, = rectangle(2, -3))
-    '''
+    jls_extract_def()
     def __init__(self, width=0, height=0):
         '''Initializes a new Rectangle instance with optional width and height.'''
         self._width = width
