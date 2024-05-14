@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+'''1-rectangle: class retangle
+'''
 
 
 @property
