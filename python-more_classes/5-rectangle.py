@@ -130,8 +130,8 @@ class Rectangle:
         """Print a message when the rectangle instance is deleted."""
         print("Bye rectangle...")
 
-   
-
+# Define my_rectangle
+my_rectangle = Rectangle(10, 5)  # Example dimensions: width=10, height=5
 
 
 
