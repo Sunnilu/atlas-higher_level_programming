@@ -65,17 +65,9 @@ class Rectangle:
     def __del__(self):
         print("Bye rectangle...")
 
-# Example usage
 my_rectangle = Rectangle(2, 4)
 print(f"Area: {my_rectangle.area()} - Perimeter: {my_rectangle.perimeter()}")
 
 
-# Ensure my_rectangle is defined before any operation or print statement that uses it
-my_rectangle = Rectangle(2, 4)
 
-# Calculate and print the area and perimeter
-print(f"Area: {my_rectangle.area()} - Perimeter: {my_rectangle.perimeter()}")
-
-# The __del__ method will be called automatically when my_rectangle goes out of scope
-# or when the program ends, printing "Bye rectangle..."
 
