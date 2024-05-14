@@ -19,14 +19,9 @@ class Rectangle:
         height(value): property setter to set the height of the rectangle.
     '''
 
-    _width = None
-    _height = None
-    number_of_instances = 0
-
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
-        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -69,7 +64,6 @@ class Rectangle:
         return f"Rectangle({self._width}, {self._height})"
 
     def __del__(self):
-        Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
 
 # Example usage
