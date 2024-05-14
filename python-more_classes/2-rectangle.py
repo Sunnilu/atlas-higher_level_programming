@@ -18,7 +18,7 @@ class Rectangle:
         height(value): property setter to set the height of the rectangle.
     '''
 
-    def __init__(self, width=0, height=0):
+    def __init__(self, width='', height=0):
         """Initializes a new Rectangle instance with optional width and height."""
         if not isinstance(width, int) or width < 0:
             raise ValueError("width must be an integer >= 0")
