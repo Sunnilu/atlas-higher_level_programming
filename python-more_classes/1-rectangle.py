@@ -4,6 +4,8 @@
 
 
 class Rectangle:
+    '''myrectangle(-2, = rectangle(2, -3))
+    '''
     def __init__(self, width=0, height=0):
         '''Initializes a new Rectangle instance with optional width and height.'''
         self._width = width
