@@ -12,7 +12,7 @@ class Rectangle:
     '''type: print symbol, can be any type.'''
 
     def __init__(self, width=0, height=0):
-    '''constructor.
+        '''constructor.
 
     Args:
         width: the width of rectangle.
