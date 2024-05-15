@@ -63,7 +63,7 @@ my_rectangle_1 = Rectangle(8, 4, '#')
 print(my_rectangle_1)
 
 # Delete the instance
-my_rectangle.__del__()
+my_rectangle_1.__del__()
 
 
 
