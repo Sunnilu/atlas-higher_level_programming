@@ -57,13 +57,13 @@ class Rectangle:
 
 
 # Create an instance
-rectangle = Rectangle(8, 4, '#')
+my_rectangle = Rectangle(8, 4, '#')
 
 # Print its string representation
-print(rectangle)
+print(my_rectangle)
 
 # Delete the instance
-rectangle.__del__()
+my_rectangle.__del__()
 
 
 
