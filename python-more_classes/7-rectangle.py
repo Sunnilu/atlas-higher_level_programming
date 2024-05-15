@@ -77,4 +77,7 @@ class Rectangle:
         '''returns formal string representation...'''
         return "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
 
+my_rectangle_1 = Rectangle(8, 4)
+print(my_rectangle_1)
+
 
