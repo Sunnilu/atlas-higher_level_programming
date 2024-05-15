@@ -152,7 +152,8 @@ class Rectangle:
         Raises:
             TypeError: If either rect_1 or rect_2 is not an instance of Rectangle.
         """
-        if not isinstance(rect_1, Rectangle) or not isinstance(rect_2, Rectangle):
+        if my_rectangle_1 is Rectangle.bigger_or_equal(my_rectangle_1, my_rectangle_2):
+
             raise TypeError("Both arguments must be instances of Rectangle.")
         if rect_1.area() > rect_2.area():
             return rect_1
