@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-'''module for Rectangle class'''
+'''module that defines a rectangle
+'''
 
 class Rectangle:
     """
@@ -107,14 +108,14 @@ class Rectangle:
     def __str__(self):
         """
         Returns a string representation of the rectangle for printing.
-        
+    
         Returns:
             str: String representation of the rectangle.
         """
         if self.__width == 0 or self.__height == 0:
             return ""
         else:
-            return self.print_symbol * self.__width + "\n" + self.print_symbol * self.__height
+            return (self.print_symbol * self.__width + "\n") * self.__height
 
     def __repr__(self):
         """
@@ -132,8 +133,9 @@ class Rectangle:
         Prints:
             str: "Bye rectangle..." message.
         """
-        print(f"Bye rectangle...{3 * '.'}")
+        print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
+
 
 
 
