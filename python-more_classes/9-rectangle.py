@@ -2,7 +2,7 @@
 '''define a rectangle class'''
 
 
-class Retangle:
+class Rectangle:
     '''represents a rectangle vector.
 
        Attributes:
