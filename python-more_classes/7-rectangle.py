@@ -1,35 +1,28 @@
 #!/usr/bin/python3
 '''module for Rectangle class'''
 
-
 class Rectangle:
-    '''this class defines a simple rectangle'''
+    '''This class defines a simple rectangle'''
 
     number_of_instances = 0
     '''int: the number of active instances.'''
 
-    print_symbol = '#'
-    '''type: print symbol, can be any type.'''
-
-    def __init__(self, width=0, height=0):
-        '''constructor.
+    def __init__(self, width=0, height=0, print_symbol='#'):
+        '''Constructor.
 
         Args:
-            width: the width of rectangle.
-            height: the height of rectangle.
+            width: The width of the rectangle.
+            height: The height of the rectangle.
+            print_symbol: Symbol to represent the rectangle.
         '''
         self.width = width
         self.height = height
+        self.print_symbol = print_symbol
         Rectangle.number_of_instances += 1
 
     @property
     def width(self):
-        '''property for the width of the rectangle.
-
-        Raises:
-            TypeError: if width is not an integer.
-            ValueError: if width is less than 0.
-        '''
+        '''Property for the width of the rectangle.'''
         return self.__width
 
     @width.setter
@@ -42,12 +35,7 @@ class Rectangle:
 
     @property
     def height(self):
-        '''property for the height of the rectangle.
-
-        Raises:
-            TypeError: if height is not an integer.
-            ValueError: if height is less than 0.
-        '''
+        '''Property for the height of the rectangle.'''
         return self.__height
 
     @height.setter
@@ -58,26 +46,31 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         self.__height = value
 
-    def area(self):
-        '''returns area of this rectangle.'''
-        return self.width * self.height
-
-    def perimeter(self):
-        '''returns perimeter of this rectangle.'''
-        if not self.width or not self.height:
-            return ""
-        return 2 * (self.width + self.height)
+    def __repr__(self):
+        '''Returns a formal string representation.'''
+        return ((str(self.print_symbol) * self.width + "\n") * self.height)[:-1]
 
     def __del__(self):
-        '''called at instance deletion'''
+        '''Called at instance deletion'''
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
 
-    def __repr__(self):
-        '''returns formal string representation...'''
-        return "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
 
-my_rectangle_1 = Rectangle(8, 4)
-print(my_rectangle_1)
+# Create instances and print their string representations
+rectangles = [
+    Rectangle(8, 4, '#'),
+    Rectangle(8, 4, '&'),
+    Rectangle(2, 1, '#'),
+    Rectangle(2, 1, 'C'),
+    Rectangle(7, 3, '-'),
+    Rectangle(1, 2, 'CC'),
+    Rectangle(1, 3, ['C', 'is', 'fun!']),
+    Rectangle(7, 3, ['C', 'is', 'fun!']),
+    Rectangle(3, 3, ['C', 'is', 'fun!'])
+]
+
+# Deleting instances
+del rectangles[:]
+
 
 
