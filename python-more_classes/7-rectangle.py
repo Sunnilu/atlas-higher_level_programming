@@ -56,21 +56,22 @@ class Rectangle:
         Rectangle.number_of_instances -= 1
 
 
-# Create instances and print their string representations
+# Create instances
 rectangles = [
     Rectangle(8, 4, '#'),
-    Rectangle(8, 4, '&'),
-    Rectangle(2, 1, '#'),
-    Rectangle(2, 1, 'C'),
-    Rectangle(7, 3, '-'),
-    Rectangle(1, 2, 'CC'),
-    Rectangle(1, 3, ['C', 'is', 'fun!']),
-    Rectangle(7, 3, ['C', 'is', 'fun!']),
-    Rectangle(3, 3, ['C', 'is', 'fun!'])
+    Rectangle(8, 4, '#'),
+    Rectangle(8, 4, '#'),
+    Rectangle(8, 4, '#'),
+    Rectangle(8, 4, '#')
 ]
+
+# Print their string representations
+for rectangle in rectangles:
+    print(rectangle)
 
 # Deleting instances
 del rectangles[:]
+
 
 
 
