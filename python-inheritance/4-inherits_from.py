@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 '''a module that defines inherits from'''
 
 def inherits_from(obj, a_class):
