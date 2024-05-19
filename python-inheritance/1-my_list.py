@@ -25,4 +25,3 @@ if __name__ == "__main__":
     print("Description:", my_list.description)
     print("Sorted list:")
     my_list.print_sorted()
-
