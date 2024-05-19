@@ -24,8 +24,6 @@ def is_kind_of_class(obj, a_class):
         if current_class is a_class:
             return True
 
-        # move up the inheritance chain
-        current_class = current_class._bases_[0]
 
     # if we haven't returned yet, the object isn't an instance therefore
     return False
