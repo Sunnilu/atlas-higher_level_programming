@@ -2,7 +2,7 @@
 '''a module that defines a kind of class'''
 
 
-def is_kind_of_class(obj, a class):
+def is_kind_of_class(obj, a_class):
     '''
     check if obj is an instance of a_class or a subclass thereof.
 
