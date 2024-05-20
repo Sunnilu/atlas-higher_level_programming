@@ -20,4 +20,3 @@ class Rectangle(BaseGeometry):
         '''string representation method.'''
         return "[rectangle] " + str(self.__width) + "/" + str(self.__height)
 
-
