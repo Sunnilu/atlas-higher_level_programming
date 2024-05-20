@@ -11,7 +11,7 @@ def __init__(self, size, height):
     self.integer_validator("height", height)
     self.__size = size
     self.__height = height
-    super().__init__(size, size, height)
+    super().__init__(size, height)
 
 def area(self):
     '''Method for area of square.'''
