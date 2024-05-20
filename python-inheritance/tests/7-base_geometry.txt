@@ -1,0 +1,34 @@
+from io import StringIO
+from unittest import TestCase
+from unittest.mock import patch
+from 6-base_geometry import BaseGeometry
+
+
+class TestBaseGeometry(TestCase):
+
+    def test_area_not_implemented(self):
+        with self.assertRaises(Exception) as context:
+            bg = BaseGeometry()
+            bg.area()
+        self.assertEqual(str(context.exception), "area() is not implemented")
+
+    def test_integer_validator(self):
+        bg = BaseGeometry()
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("test", "string")
+        self.assertEqual(str(context.exception), "test must be an integer")
+
+        with self.assertRaises(ValueError) as context:
+            bg.integer_validator("test", 0)
+        self.assertEqual(str(context.exception), "test must be greater than 0")
+
+        with self.assertRaises(ValueError) as context:
+            bg.integer_validator("test", -5)
+        self.assertEqual(str(context.exception), "test must be greater than 0")
+
+        bg.integer_validator("test", 10)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
