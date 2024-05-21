@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+'''returns a dictionary description'''
 
 
 def class_to_json(obj):
@@ -20,11 +21,10 @@ def class_to_json(obj):
         if not attr_name.startswith("__"):
             # Get the attribute value
             attr_value = getattr(obj, attr_name)
-
+            
             # Check if the attribute value is serializable
             if isinstance(attr_value, (list, dict, str, int, bool)):
                 # Add the attribute-value pair to the dictionary
                 json_dict[attr_name] = attr_value
 
     return json_dict
-
