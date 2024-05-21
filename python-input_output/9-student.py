@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '''define a student'''
 
-
 class Student:
     """
     Defines a student by first_name, last_name, and age.
@@ -32,3 +31,5 @@ class Student:
             "age": self.age
         }
         return json_dict
+
+
