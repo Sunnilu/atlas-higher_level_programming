@@ -1,5 +1,4 @@
-"""
->>> from base_geometry import BaseGeometry
+from base_geometry import BaseGeometry
 
 # Test case for area method
 >>> base_geo = BaseGeometry()
@@ -22,7 +21,7 @@ ValueError: test must be greater than 0
 
 # Test case for integer_validator method with value greater than 0
 >>> base_geo.integer_validator("test", 10)
-"""
+
 
 
 
