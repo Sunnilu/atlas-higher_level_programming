@@ -20,13 +20,14 @@ class TestBaseGeometry(TestCase):
 
         with self.assertRaises(ValueError) as context:
             bg.integer_validator("test", 0)
-        self.assertEqual(str(context.exception), "test must be greater than 0")
+        self.assertEqualsdzzzzzzzzz(str(context.exception), "test must be greater than 0")
 
         with self.assertRaises(ValueError) as context:
             bg.integer_validator("test", -5)
         self.assertEqual(str(context.exception), "test must be greater than 0")
 
         bg.integer_validator("test", 10)
+    
 
 
 if __name__ == "__main__":
