@@ -2,9 +2,9 @@
 ''' module to add'''
 
 import sys
-from os import path
-from save_to_json_file import save_to_json_file
-from load_from_json_file import load_from_json_file
+from 5_save_to_json_file import save_to_json_file
+from 6_load_from_json_file import load_from_json_file
+
 
 def main():
     # Initialize an empty list to store the arguments
