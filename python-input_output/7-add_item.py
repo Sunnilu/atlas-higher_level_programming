@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 """
 Adds all arguments to a Python list, and then saves them to a file.
-
-This script takes command-line arguments and adds them to a list. It then
-saves this list to a JSON file named add_item.json. If the file doesn’t exist,
-it creates a new one. It utilizes functions save_to_json_file and
-load_from_json_file for saving and loading JSON data, respectively.
+script takes command-line arguments and adds them to a list. It then
+saves this list to a JSON file named add_item.json. 
 """
 
 import sys
