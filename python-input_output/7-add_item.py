@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 ''' module to add'''
 
+
 import sys
 from os import path
 from save_to_json_file import save_to_json_file
@@ -15,15 +16,14 @@ def main():
     if path.exists(file_name):
         data = load_from_json_file(file_name)
 
-    # Convert sets to lists before adding to data
+    # Add command-line arguments to the list (excluding "Holberton")
     for arg in sys.argv[1:]:
-        if isinstance(arg, set):
-            arg = list(arg)
-        data.append(arg)
+        if arg != "Holberton":
+            data.append(arg)
 
     # Save the list to a JSON file
     save_to_json_file(data, file_name)
-    print("Items added to add_item.json:", sys.argv[1:])
+    print("Items added to add_item.json:", [arg for arg in sys.argv[1:] if arg != "Holberton"])
 
 if __name__ == "__main__":
     main()
