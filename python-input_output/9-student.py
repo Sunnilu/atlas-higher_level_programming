@@ -2,7 +2,6 @@
 '''define a student'''
 
 
-
 class Student:
     """
     Defines a student by first_name, last_name, and age.
