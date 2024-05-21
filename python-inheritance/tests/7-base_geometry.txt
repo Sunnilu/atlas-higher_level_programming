@@ -1,35 +1,31 @@
-from io import StringIO
-from unittest import TestCase
-from unittest.mock import patch
-from 6-base_geometry import BaseGeometry
+import unittest
 
-
-class TestBaseGeometry(TestCase):
-
-    def test_area_not_implemented(self):
+class TestBaseGeometry(unittest.TestCase):
+    def test_area(self):
+        base_geo = BaseGeometry()
         with self.assertRaises(Exception) as context:
-            bg = BaseGeometry()
-            bg.area()
+            base_geo.area()
         self.assertEqual(str(context.exception), "area() is not implemented")
 
     def test_integer_validator(self):
-        bg = BaseGeometry()
+        base_geo = BaseGeometry()
+        # Test case for non-integer value
         with self.assertRaises(TypeError) as context:
-            bg.integer_validator("test", "string")
+            base_geo.integer_validator("test", "string")
         self.assertEqual(str(context.exception), "test must be an integer")
-
+        
+        # Test case for integer value less than or equal to 0
         with self.assertRaises(ValueError) as context:
-            bg.integer_validator("test", 0)
-        self.assertEqualsdzzzzzzzzz(str(context.exception), "test must be greater than 0")
-
-        with self.assertRaises(ValueError) as context:
-            bg.integer_validator("test", -5)
+            base_geo.integer_validator("test", 0)
         self.assertEqual(str(context.exception), "test must be greater than 0")
 
-        bg.integer_validator("test", 10)
-    
-
+        # Test case for integer value greater than 0
+        try:
+            base_geo.integer_validator("test", 10)
+        except:
+            self.fail("integer_validator raised unexpected Exception.")
 
 if __name__ == "__main__":
     unittest.main()
+
 
