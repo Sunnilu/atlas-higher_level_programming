@@ -1,39 +1,30 @@
 #!/usr/bin/python3
-"""
-Adds all arguments to a Python list, and then saves them to a file.
-script takes command-line arguments and adds them to a list. It then
-saves this list to a JSON file named add_item.json. 
-"""
+''' module to add'''
 
 import sys
-import json
+from os import path
 from save_to_json_file import save_to_json_file
 from load_from_json_file import load_from_json_file
 
-def add_to_list_and_save(args):
-    """
-    Adds the provided arguments to a list and saves it to a JSON file.
+def main():
+    # Check if the file exists
+    file_name = 'add_item.json'
+    data = []
 
-    Args:
-        args (list): A list of arguments to be added to the existing list.
+    # If the file exists, load its content
+    if path.exists(file_name):
+        data = load_from_json_file(file_name)
 
-    Returns:
-        None
-    """
-    try:
-        # Load existing list or create a new one
-        items = load_from_json_file("add_item.json")
-    except FileNotFoundError:
-        items = []
+    # Convert sets to lists before adding to data
+    for arg in sys.argv[1:]:
+        if isinstance(arg, set):
+            arg = list(arg)
+        data.append(arg)
 
-    # Add new items to the list
-    items.extend(args)
-
-    # Save the updated list to a JSON file
-    save_to_json_file(items, "add_item.json")
+    # Save the list to a JSON file
+    save_to_json_file(data, file_name)
+    print("Items added to add_item.json:", sys.argv[1:])
 
 if __name__ == "__main__":
-    # Exclude script name from arguments
-    args = sys.argv[1:]
-    add_to_list_and_save(args)
+    main()
 
