@@ -32,4 +32,3 @@ class Student:
             "age": self.age
         }
         return json_dict
-
