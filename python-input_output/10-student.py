@@ -24,7 +24,7 @@ class Student:
         Retrieves a dictionary representation of a Student instance.
 
         Args:
-            attrs (list, optional): A list of attribute names to retrieve. Defaults to None.
+            attrs (list, optional): attribute retrieve. Defaults to None.
 
         Returns:
             dict: A dictionary representation of the Student instance.
@@ -33,6 +33,3 @@ class Student:
             return self.__dict__
         else:
             return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
-
-
-
