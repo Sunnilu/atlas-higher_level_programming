@@ -1,170 +1,206 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 
 
+import json
 
-from models.base import Base
+import csv
 
+import turtle
 
 
-class Rectangle(Base):
 
+class Base:
 
-    def __init__(self, width, height, x=0, y=0, id=None):
 
-        self.width = width
+    __nb_objects = 0
 
-        self.height = height
 
-        self.x = x
+    def __init__(self, id=None):
 
-        self.y = y
+        if id is not None:
 
-        super().__init__(id)
+            self.id = id
 
+        else:
 
-    @property
+            Base.__nb_objects += 1
 
-    def width(self):
-
-        return self.__width
-
-
-    @width.setter
-
-    def width(self, value):
-
-        self.setter_validation("width", value)
-
-        self.__width = value
-
-
-    @property
-
-    def height(self):
-
-        return self.__height
-
-
-    @height.setter
-
-    def height(self, value):
-
-        self.setter_validation("height", value)
-
-        self.__height = value
-
-
-    @property
-
-    def x(self):
-
-        return self.__x
-
-
-    @x.setter
-
-    def x(self, value):
-
-        self.setter_validation("x", value)
-
-        self.__x = value
-
-
-    @property
-
-    def y(self):
-
-        return self.__y
-
-
-    @y.setter
-
-    def y(self, value):
-
-        self.setter_validation("y", value)
-
-        self.__y = value
-
-
-    def area(self):
-
-        return (self.height * self.width)
-
-
-    def display(self):
-
-        rectangle = ""
-
-        print("\n" * self.y, end="")
-
-        for i in range(self.height):
-
-            rectangle += (" " * self.x) + ("#" * self.width) + "\n"
-
-        print(rectangle, end="")
-
-
-    def update(self, *args, **kwargs):
-
-        if len(args) == 0:
-
-            for key, val in kwargs.items():
-
-                self.__setattr__(key, val)
-
-            return
-
-        try:
-
-            self.id = args[0]
-
-            self.width = args[1]
-
-            self.height = args[2]
-
-            self.x = args[3]
-
-            self.y = args[4]
-
-        except IndexError:
-
-            pass
-
-
-    def to_dictionary(self):
-
-        return {'x': getattr(self, "x"),
-
-                'y': getattr(self, "y"),
-
-                'id': getattr(self, "id"),
-
-                'height': getattr(self, "height"),
-
-                'width': getattr(self, "width")}
+            self.id = Base.__nb_objects
 
 
     @staticmethod
 
-    def setter_validation(attribute, value):
+    def to_json_string(list_dictionaries):
 
-        if type(value) != int:
+        if list_dictionaries is None or list_dictionaries == []:
 
-            raise TypeError("{} must be an integer".format(attribute))
+            return []
 
-        if attribute == "x" or attribute == "y":
-
-            if value < 0:
-
-                raise ValueError("{} must be >= 0".format(attribute))
-
-        elif value <= 0:
-
-            raise ValueError("{} must be > 0".format(attribute))
+        return json.dumps(list_dictionaries)
 
 
-    def __str__(self):
+    @classmethod
 
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
+    def save_to_file(cls, list_objs):
 
-                                                       self.width, self.height
+        filename = cls.__name__ + ".json"
+
+        with open(filename, "w") as jsonfile:
+
+            if list_objs is None:
+
+                jsonfile.write("[]")
+
+            else:
+
+                list_dicts = [o.to_dictionary() for o in list_objs]
+
+                jsonfile.write(Base.to_json_string(list_dicts))
+
+
+    @staticmethod
+
+    def from_json_string(json_string):
+
+        if json_string is None or json_string == "[]":
+
+            return []
+
+        return json.loads(json_string)
+
+
+    @classmethod
+
+    def create(cls, **dictionary):
+
+        if dictionary and dictionary != {}:
+
+            if cls.__name__ == "Rectangle":
+
+                new = cls(1, 1)
+
+            else:
+
+                new = cls(1)
+
+            new.update(**dictionary)
+
+            return new
+
+
+    @classmethod
+
+    def load_from_file(cls):
+
+        filename = str(cls.__name__) + ".json"
+
+        try:
+
+            with open(filename, "r") as jsonfile:
+
+                list_dicts = Base.from_json_string(jsonfile.read())
+
+                return [cls.create(**d) for d in list_dicts]
+
+        except IOError:
+
+            return []
+
+
+    @classmethod
+
+    def save_to_file_csv(cls, list_objs):
+
+        filename = cls.__name__ + ".csv"
+
+        with open(filename, "w", newline="") as csvfile:
+
+            if list_objs is None or list_objs == []:
+
+                csvfile.write("[]")
+
+            else:
+
+                if cls.__name__ == "Rectangle":
+
+                    fieldnames = ["id", "width", "height", "x", "y"]
+
+                else:
+
+                    fieldnames = ["id", "size", "x", "y"]
+
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                for obj in list_objs:
+
+                    writer.writerow(obj.to_dictionary())
+
+
+    @classmethod
+
+    def load_from_file_csv(cls):
+
+        filename = cls.__name__ + ".csv"
+
+        try:
+
+            with open(filename, "r", newline="") as csvfile:
+
+                if cls.__name__ == "Rectangle":
+
+                    fieldnames = ["id", "width", "height", "x", "y"]
+
+                else:
+
+                    fieldnames = ["id", "size", "x", "y"]
+
+                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
+
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+
+                              for d in list_dicts]
+
+                return [cls.create(**d) for d in list_dicts]
+
+        except IOError:
+
+            return []
+
+
+    @staticmethod
+
+    def draw(cls, list_rectangles, list_squares):
+
+        window = turtle.Screen()
+
+        pen = turtle.Pen()
+
+        figures = list_rectangles + list_squares
+
+
+        for fig in figures:
+
+            pen.up()
+
+            pen.goto(fig.x, fig.y)
+
+            pen.down()
+
+            pen.forward(fig.width)
+
+            pen.right(90)
+
+            pen.forward(fig.height)
+
+            pen.right(90)
+
+            pen.forward(fig.width)
+
+            pen.right(90)
+
+            pen.forward(fig.height)
+
+            pen.right(90)
+
+
+        window.exitonclick()
