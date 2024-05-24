@@ -1,10 +1,4 @@
-__init__.py
-
-
-#!/usr/bin/pyth  
-
-
-#!/usr/bin/python3
+ #!/usr/bin/python3
 
 
 import json
