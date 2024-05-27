@@ -6,6 +6,7 @@ import csv
 class Base:
     '''A representation of the base of our OOP hierarchy'''
 
+
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -13,7 +14,7 @@ class Base:
         Constructor for Base class.
 
         Parameters:
-            id (int): Identifier for the instance. If None, automatically assigned.
+            id (int): Identifier for instance. If None, assign.
         '''
         if id is not None:
             self.id = id
