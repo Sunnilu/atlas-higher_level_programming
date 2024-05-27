@@ -82,4 +82,3 @@ class Base:
             pen.forward(fig.height)
             pen.right(90)
         window.exitonclick()
-```
