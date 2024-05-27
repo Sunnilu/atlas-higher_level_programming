@@ -2,7 +2,6 @@
 '''module for base class'''
 import json
 import csv
-import turtle
 
 class Base:
     '''A representation of the base of our OOP hierarchy'''
