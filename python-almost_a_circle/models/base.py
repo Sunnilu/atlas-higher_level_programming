@@ -6,13 +6,10 @@
 
 class Base:
     '''A representation of the base of our OOP hierarchy'''
-
     __nb_objects = 0
-
 
     def __init__(self, id=None):
         '''constructor'''
-
         if id is not None:
 
             self.id = id
@@ -27,11 +24,9 @@ class Base:
     @staticmethod
 
     def to_json_string(list_dictionaries):
-
         if list_dictionaries is None or list_dictionaries == []:
 
             return []
-
         return json.dumps(list_dictionaries)
 
 
@@ -40,11 +35,9 @@ class Base:
     def save_to_file(cls, list_objs):
 
         filename = cls.__name__ + ".json"
-
         with open(filename, "w") as jsonfile:
 
             if list_objs is None:
-
                 jsonfile.write("[]")
 
             else:
@@ -61,9 +54,7 @@ class Base:
         if json_string is None or json_string == "[]":
 
             return []
-
         return json.loads(json_string)
-
 
     @classmethod
 
@@ -74,11 +65,9 @@ class Base:
             if cls.__name__ == "Rectangle":
 
                 new = cls(1, 1)
-
             else:
 
                 new = cls(1)
-
             new.update(**dictionary)
 
             return new
