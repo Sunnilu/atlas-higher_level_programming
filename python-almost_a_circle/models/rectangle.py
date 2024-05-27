@@ -1,101 +1,82 @@
 #!/usr/bin/python3
-"""Module for rectangle class"""
+'''Module for rectangle class'''
 
-from models.base import Base
 
-class Rectangle(Base):
-    """A rectangle class"""
+class Rectangle:
+    def __init__(self, width, height):
+        """
+        Initialize a new Rectangle instance.
 
-    def __init__(self, width, height, x=0, y=0, id=None):
-        """Constructor"""
+        Args:
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
+        """
         self.width = width
         self.height = height
-        self.x = x
-        self.y = y
-        super().__init__(id)
 
     @property
     def width(self):
-        """Width getter."""
+        """
+        Getter for the width attribute.
+        """
         return self._width
 
     @width.setter
     def width(self, value):
-        """Width setter."""
-        self.setter_validation("width", value)
-        self._width = value
+        """
+        Setter for the width attribute.
+        
+        Args:
+            value (int): New width value.
+        """
+        if isinstance(value, int) and value > 0:
+            self._width = value
+        else:
+            raise ValueError("Width must be a positive integer.")
 
     @property
     def height(self):
-        """Height getter."""
+        """
+        Getter for the height attribute.
+        """
         return self._height
 
     @height.setter
     def height(self, value):
-        """Height setter."""
-        self.setter_validation("height", value)
-        self._height = value
-
-    @property
-    def x(self):
-        """X coordinate getter."""
-        return self._x
-
-    @x.setter
-    def x(self, value):
-        """X coordinate setter."""
-        self.setter_validation("x", value)
-        self._x = value
-
-    @property
-    def y(self):
-        """Y coordinate getter."""
-        return self._y
-
-    @y.setter
-    def y(self, value):
-        """Y coordinate setter."""
-        self.setter_validation("y", value)
-        self._y = value
+        """
+        Setter for the height attribute.
+        
+        Args:
+            value (int): New height value.
+        """
+        if isinstance(value, int) and value > 0:
+            self._height = value
+        else:
+            raise ValueError("Height must be a positive integer.")
 
     def area(self):
-        """Calculate and return the area of the rectangle."""
-        return self.height * self.width
+        """
+        Calculate and return the area of the rectangle.
+        
+        Returns:
+            int: Area of the rectangle.
+        """
+        return self.width * self.height
 
     def display(self):
-        """Display the rectangle using the console."""
-        print("\n" * self.y, end="")
+        """
+        Display the rectangle using asterisks (*) in the console.
+        """
         for _ in range(self.height):
-            print(" " * self.x + "#" * self.width)
+            print("*" * self.width)
 
-    def update(self, *args, **kwargs):
-        """Update the rectangle attributes based on positional or keyword arguments."""
-        if args:
-            self.id, self.width, self.height, self.x, self.y = args
-        for key, val in kwargs.items():
-            setattr(self, key, val)
+# Example usage
+r = Rectangle(12, 15)
+print(f"Width: {r.width}, Height: {r.height}")
+print(f"Area: {r.area()}")
 
-    def to_dictionary(self):
-        """Return a dictionary representation of the rectangle."""
-        return {
-            'x': self.x,
-            'y': self.y,
-            'id': self.id,
-            'height': self.height,
-            'width': self.width
-        }
-
-    @staticmethod
-    def setter_validation(attribute, value):
-        """Validate the attribute value."""
-        if type(value)!= int:
-            raise TypeError(f"{attribute} must be an integer")
-        if attribute in ['x', 'y']:
-            if value < 0:
-                raise ValueError(f"{attribute} must be >= 0")
-        elif value <= 0:
-            raise ValueError(f"{attribute} must be > 0")
-
-    def __str__(self):
-        """Return a string representation of the rectangle."""
-        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
+try:
+    r.width = 20  # Changing width
+    r.display()
+except Exception as e:
+    print(e)
