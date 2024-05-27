@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+'''module for base class'''
 import json
 import csv
 import turtle
@@ -9,7 +10,12 @@ class Base:
     __nb_objects = 0
 
     def __init__(self, id=None):
-        '''Constructor'''
+        '''
+        Constructor for Base class.
+
+        Parameters:
+            id (int): Identifier for the instance. If None, automatically assigned.
+        '''
         if id is not None:
             self.id = id
         else:
@@ -18,12 +24,28 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        '''
+        Convert a list of dictionaries to a JSON string.
+
+        Parameters:
+            list_dictionaries (list): List of dictionaries to be converted.
+
+        Returns:
+            str: JSON representation of the input list of dictionaries.
+        '''
         if list_dictionaries is None or list_dictionaries == []:
             return ""
         return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
+        '''
+        Save a list of objects to a JSON file.
+
+        Parameters:
+            cls (class): The class.
+            list_objs (list): List of objects to be saved.
+        '''
         filename = cls.__name__ + ".json"
         with open(filename, "w") as jsonfile:
             if list_objs is None:
@@ -36,6 +58,14 @@ class Base:
 
     @staticmethod
     def draw(cls, list_rectangles, list_squares):
+        '''
+        Draw rectangles and squares using the turtle module.
+
+        Parameters:
+            cls (class): The class.
+            list_rectangles (list): List of Rectangle objects.
+            list_squares (list): List of Square objects.
+        '''
         window = turtle.Screen()
         pen = turtle.Pen()
         figures = list_rectangles + list_squares
@@ -52,3 +82,4 @@ class Base:
             pen.forward(fig.height)
             pen.right(90)
         window.exitonclick()
+```
