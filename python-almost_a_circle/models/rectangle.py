@@ -11,8 +11,8 @@ class Rectangle:
             width (int): Width of the rectangle.
             height (int): Height of the rectangle.
         """
-        self.width = width
-        self.height = height
+        self._width = width
+        self._height = height
 
     @property
     def width(self):
@@ -61,14 +61,14 @@ class Rectangle:
         Returns:
             int: Area of the rectangle.
         """
-        return self.width * self.height
+        return self._width * self._height
 
     def display(self):
         """
         Display the rectangle using asterisks (*) in the console.
         """
-        for _ in range(self.height):
-            print("*" * self.width)
+        for _ in range(self._height):
+            print("*" * self._width)
 
 # Example usage
 r = Rectangle(12, 15)
@@ -80,3 +80,4 @@ try:
     r.display()
 except Exception as e:
     print(e)
+
