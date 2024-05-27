@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+'''A modue for Base class'''
+
 import json
 import csv
 import turtle
