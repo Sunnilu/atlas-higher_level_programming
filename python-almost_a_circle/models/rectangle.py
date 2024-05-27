@@ -2,169 +2,99 @@
 '''Module for rectangle class'''
 from models.base import Base
 
-
-
 class Rectangle(Base):
     '''A rectangle class'''
 
     def __init__(self, width, height, x=0, y=0, id=None):
         '''Constructor'''
-
         self.width = width
-
         self.height = height
-
         self.x = x
-
         self.y = y
-
         super().__init__(id)
 
-
     @property
-
     def width(self):
-        '''width of this property'''
-        return self.__width
-
+        '''Width getter.'''
+        return self._width
 
     @width.setter
-
     def width(self, value):
-
+        '''Width setter.'''
         self.setter_validation("width", value)
-
-        self.__width = value
-
+        self._width = value
 
     @property
-
     def height(self):
-        '''height of this rectangle'''
-        return self.__height
-
+        '''Height getter.'''
+        return self._height
 
     @height.setter
-
     def height(self, value):
-
+        '''Height setter.'''
         self.setter_validation("height", value)
-
-        self.__height = value
-
+        self._height = value
 
     @property
-
     def x(self):
-
-        return self.__x
-
+        '''X coordinate getter.'''
+        return self._x
 
     @x.setter
-
     def x(self, value):
-
+        '''X coordinate setter.'''
         self.setter_validation("x", value)
-
-        self.__x = value
-
+        self._x = value
 
     @property
-
     def y(self):
-
-        return self.__y
-
+        '''Y coordinate getter.'''
+        return self._y
 
     @y.setter
-
     def y(self, value):
-
+        '''Y coordinate setter.'''
         self.setter_validation("y", value)
-
-        self.__y = value
-
+        self._y = value
 
     def area(self):
-
-        return (self.height * self.width)
-
+        '''Calculate and return the area of the rectangle.'''
+        return self.height * self.width
 
     def display(self):
-
-        rectangle = ""
-
+        '''Display the rectangle using the console.'''
         print("\n" * self.y, end="")
-
-        for i in range(self.height):
-
-            rectangle += (" " * self.x) + ("#" * self.width) + "\n"
-
-        print(rectangle, end="")
-
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
 
     def update(self, *args, **kwargs):
-
-        if len(args) == 0:
-
-            for key, val in kwargs.items():
-
-                self.__setattr__(key, val)
-
-            return
-
-        try:
-
-            self.id = args[0]
-
-            self.width = args[1]
-
-            self.height = args[2]
-
-            self.x = args[3]
-
-            self.y = args[4]
-
-        except IndexError:
-
-            pass
-
+        '''Update the rectangle attributes based on positional or keyword arguments.'''
+        if args:
+            self.id, self.width, self.height, self.x, self.y = args
+        for key, val in kwargs.items():
+            setattr(self, key, val)
 
     def to_dictionary(self):
-
-        return {'x': getattr(self, "x"),
-
-                'y': getattr(self, "y"),
-
-                'id': getattr(self, "id"),
-
-                'height': getattr(self, "height"),
-
-                'width': getattr(self, "width")}
-
+        '''Return a dictionary representation of the rectangle.'''
+        return {
+            'x': self.x,
+            'y': self.y,
+            'id': self.id,
+            'height': self.height,
+            'width': self.width
+        }
 
     @staticmethod
-
     def setter_validation(attribute, value):
-
-        if type(value) != int:
-
-            raise TypeError("{} must be an integer".format(attribute))
-
-        if attribute == "x" or attribute == "y":
-
+        '''Validate the attribute value.'''
+        if type(value)!= int:
+            raise TypeError(f"{attribute} must be an integer")
+        if attribute in ['x', 'y']:
             if value < 0:
-
-                raise ValueError("{} must be >= 0".format(attribute))
-
+                raise ValueError(f"{attribute} must be >= 0")
         elif value <= 0:
-
-            raise ValueError("{} must be > 0".format(attribute))
-
+            raise ValueError(f"{attribute} must be > 0")
 
     def __str__(self):
-
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
-
-                                                       self.width, self.height)
-
+        '''Return a string representation of the rectangle.'''
+        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
