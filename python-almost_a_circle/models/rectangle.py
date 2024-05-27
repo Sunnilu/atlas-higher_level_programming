@@ -1,15 +1,14 @@
 #!/usr/bin/python3
-
-
-
+'''Module for rectangle class'''
 from models.base import Base
 
 
 
 class Rectangle(Base):
-
+    '''A rectangle class'''
 
     def __init__(self, width, height, x=0, y=0, id=None):
+        '''Constructor'''
 
         self.width = width
 
@@ -25,7 +24,7 @@ class Rectangle(Base):
     @property
 
     def width(self):
-
+        '''width of this property'''
         return self.__width
 
 
@@ -41,7 +40,7 @@ class Rectangle(Base):
     @property
 
     def height(self):
-
+        '''height of this rectangle'''
         return self.__height
 
 
