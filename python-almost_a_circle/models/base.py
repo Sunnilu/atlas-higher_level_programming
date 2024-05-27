@@ -3,6 +3,7 @@
 import json
 import csv
 
+
 class Base:
     '''A representation of the base of our OOP hierarchy'''
 
