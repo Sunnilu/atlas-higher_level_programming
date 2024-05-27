@@ -3,34 +3,10 @@
 from models.base import Base
 
 class Rectangle(Base):
-    """
-    Represents a rectangle with dimensions and position.
-
-    Attributes:
-        width (int): Width of the rectangle.
-        height (int): Height of the rectangle.
-        x (int): X-coordinate of the rectangle's top-left corner.
-        y (int): Y-coordinate of the rectangle's top-left corner.
-        id (int): Unique identifier for the rectangle.
-
-    Methods:
-        area(): Calculates and returns the area of the rectangle.
-        display(): Displays the rectangle using asterisks in the console.
-        update(*args, **kwargs): Updates the rectangle's attributes.
-        to_dictionary(): Returns a dictionary representation of the rectangle.
-    """
+    """class Rectangle"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """
-        Initializes a new Rectangle instance.
-
-        Args:
-            width (int): Width of the rectangle.
-            height (int): Height of the rectangle.
-            x (int, optional): X-coordinate of the rectangle's top-left corner. Defaults to 0.
-            y (int, optional): Y-coordinate of the rectangle's top-left corner. Defaults to 0.
-            id (int, optional): Unique identifier for the rectangle. Defaults to None.
-        """
+        """initializes instances"""
         self.width = width
         self.height = height
         self.x = x
