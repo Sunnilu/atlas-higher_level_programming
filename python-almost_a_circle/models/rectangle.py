@@ -3,6 +3,14 @@
 
 
 class Rectangle:
+    '''
+    Class representing a rectangle.
+
+    Attributes:
+        width (int): The width of the rectangle.
+        height (int): The height of the rectangle.
+    '''
+
     def __init__(self, width, height):
         """
         Initialize a new Rectangle instance.
@@ -80,4 +88,3 @@ try:
     r.display()
 except Exception as e:
     print(e)
-
