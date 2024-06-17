@@ -1,3 +1,2 @@
--- Delete rows
--- Execute: 13-change_class.sql | mysql -hlocalhost -uroot -p hbtn_0c_0
+-- Remove_records with score <= 5 in 'second_table' for 'hbtn_0c_0'
 DELETE FROM second_table WHERE score <= 5;
