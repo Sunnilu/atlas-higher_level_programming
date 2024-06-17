@@ -1,5 +1,5 @@
 -- create table 'second_table' in database 'hbtn_0c_0
--- Add props (id INT), (name VARCHAR(256), (score INT) 
+-- Add props (id INT), (name VAR CHAR(256)), (score INT) 
 CREATE TABLE IF NOT EXISTS second_table (id INT, name VARCHAR(256), score INT)
 
 -- Script should create a maximum of 4 records
