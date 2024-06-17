@@ -1,3 +1,2 @@
--- List the score greater than or equal to 10
--- Execute: cat 11-best_score.sql | mysql -hlocalhost -uroot -p hbtn_0c_0
+-- List all_records with score >= 10 in 'second_table' for database 'hbtn_0c_0'
 SELECT score, name FROM second_table WHERE score >= 10 ORDER BY score DESC;
