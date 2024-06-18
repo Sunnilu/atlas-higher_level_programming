@@ -4,7 +4,7 @@
 import MySQLdb
 import sys
 
-def list_cities(username, password, database):
+def list_cities_with_states(username, password, database):
     # Connect to MySQL server
     try:
         conn = MySQLdb.connect(
@@ -16,8 +16,14 @@ def list_cities(username, password, database):
         )
         cursor = conn.cursor()
 
-        # Execute SQL query to fetch all cities sorted by id
-        cursor.execute("SELECT * FROM cities ORDER BY id ASC")
+        # Execute SQL query to fetch cities with corresponding state names
+        query = """
+            SELECT cities.id, cities.name, states.name 
+            FROM cities 
+            JOIN states ON cities.state_id = states.id 
+            ORDER BY cities.id ASC
+        """
+        cursor.execute(query)
 
         # Fetch all rows
         rows = cursor.fetchall()
@@ -45,5 +51,5 @@ if __name__ == "__main__":
     password = sys.argv[2]
     database = sys.argv[3]
 
-    # Call function to list cities
-    list_cities(username, password, database)
+    # Call function to list cities with states
+    list_cities_with_states(username, password, database)
