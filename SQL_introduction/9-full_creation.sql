@@ -1,12 +1,22 @@
--- Create table 'second_table' in database 'hbtn_0c_0'
-CREATE TABLE IF NOT EXISTS `hbtn_0c_0`.`second_table` (
-    `id` INT,
-    `name` VARCHAR(256),
-    `score` INT
+-- Create database if not exists
+CREATE DATABASE IF NOT EXISTS hbtn_test_db_9;
+
+-- Use the database
+USE hbtn_test_db_9;
+
+-- Drop table if exists (in case we want to reset it)
+DROP TABLE IF EXISTS second_table;
+
+-- Create table 'second_table' with id, name, and score columns
+CREATE TABLE second_table (
+    id INT,
+    name VARCHAR(256),
+    score INT
 );
 
--- Insert up to 4 records into 'second_table'
-INSERT INTO `hbtn_0c_0`.`second_table` (`id`, `name`, `score`) VALUES (1, 'John', 10);
-INSERT INTO `hbtn_0c_0`.`second_table` (`id`, `name`, `score`) VALUES (2, 'Alex', 3);
-INSERT INTO `hbtn_0c_0`.`second_table` (`id`, `name`, `score`) VALUES (3, 'Bob', 14);
-INSERT INTO `hbtn_0c_0`.`second_table` (`id`, `name`, `score`) VALUES (4, 'George', 8);
+-- Insert records into 'second_table'
+INSERT INTO second_table (id, name, score) VALUES
+(1, 'John', 10),
+(2, 'Alex', 3),
+(3, 'Bob', 14),
+(4, 'George', 8);
