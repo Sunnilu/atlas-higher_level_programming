@@ -1,5 +1,6 @@
--- Create of the MySQL server user 'user_0d_1'
+-- Grant basic privileges to user 'user_0d_1'
+GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO 'user_0d_1'@'localhost';
 
-CREATE USER IF NOT EXISTS 'user-0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
-GRANT ALL PRIVILEGES ON * . * TO 'user_0d_1'@'localhost';
-FLUSH PRIVILEGES;
+-- Add more privileges, checking after each addition
+GRANT CREATE, DROP ON *.* TO 'user_0d_1'@'localhost';
+GRANT RELOAD, SHUTDOWN ON *.* TO 'user_0d_1'@'localhost'
