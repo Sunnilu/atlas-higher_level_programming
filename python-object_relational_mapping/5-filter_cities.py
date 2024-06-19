@@ -2,62 +2,39 @@
 """List states"""
 
 import MySQLdb
-import sys
+from sys import argv
 
-def list_cities_by_state(username, password, database, state_name):
-    try:
-        # Connect to MySQL server
-        conn = MySQLdb.connect(
-            host='localhost',
-            user=username,
-            passwd=password,
-            db=database,
-            port=3306
-        )
-        cursor = conn.cursor()
+# Prevent direct execution when imported
+if __name__ == '__main__':
+    # Check if the correct number of arguments is provided
+    if len(argv)!= 5:
+        print("Usage: python script.py <username> <password> <dbname> <state>")
+        exit(1)
 
-        # Prepare SQL query with parameterized query
-        query = """
-            SELECT GROUP_CONCAT(cities.name SEPARATOR ', ') 
-            FROM cities 
-            JOIN states ON cities.state_id = states.id 
-            WHERE states.name = %s 
-            ORDER BY cities.id ASC
-        """
-        
-        # Execute query with parameter safely
-        cursor.execute(query, (state_name,))
+    # Extract arguments
+    username, password, dbname, state = argv[1], argv[2], argv[3], argv[4]
 
-        # Fetch first row (only one row should be returned)
-        row = cursor.fetchone()
+    # Connect to the MySQL server
+    db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=dbname)
 
-        # Check if row is None or the value is None
-        if row is None or row[0] is None:
-            print("Empty")
-        else:
-            # Print results as specified (comma-separated)
-            print(row[0])
+    # Create a cursor object
+    cur = db.cursor()
 
-        # Close cursor and connection
-        cursor.close()
-        conn.close()
+    # Prepare the SQL query with placeholders for parameters
+    query = "SELECT cities.name FROM cities INNER JOIN states ON cities.state_id = states.id WHERE states.name = %s ORDER BY cities.id ASC;"
 
-    except MySQLdb.Error as e:
-        print(f"Error connecting to MySQL: {e}")
-        sys.exit(1)
+    # Execute the query with the state name parameter
+    cur.execute(query, (state,))
 
-if __name__ == "__main__":
-    # Check for correct number of arguments
-    if len(sys.argv) != 5:
-        print("Usage: python script.py <username> <password> <database> <state_name>")
-        sys.exit(1)
+    # Fetch all the rows
+    rows = cur.fetchall()
 
-    # Get MySQL credentials, database name, and state name from command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
+    # Print the results
+    for row in rows:
+        print(row[0])
 
-    # Call function to list cities by state
-    list_cities_by_state(username, password, database, state_name)
+    # Close the cursor and connection
+    cur.close()
+    db.close()
+
 
