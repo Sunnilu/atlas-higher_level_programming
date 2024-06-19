@@ -14,7 +14,7 @@ if __name__ == "__main__":
     exit(1)
 
   conn_str = "mysql+mysqldb://{}:{}@localhost:3306/{}"
-  engine = create_enging(conn_str.format(inp[1], inp[2], inp[3],))
+  engine = create_engine(conn_str.format(inp[1], inp[2], inp[3],))
   Session = sessionmaker(engine)
 
   Base.metadata.create_all(engine)
