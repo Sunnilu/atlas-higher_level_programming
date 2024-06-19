@@ -23,12 +23,13 @@ def fetch_cities_by_state(username, password, db_name):
     # Create a session
     with Session() as session:
         try:
-            # Query all City objects sorted by id
+            # Query all City objects along with their State names, sorted by City id
             cities = session.query(State.name, City.id, City.name)\
                            .join(City, State.id == City.state_id)\
                            .order_by(City.id)\
                            .all()
 
+            # Print each city in the required format
             for state_name, city_id, city_name in cities:
                 print(f"{state_name}: ({city_id}) {city_name}")
 
@@ -42,4 +43,5 @@ if __name__ == "__main__":
 
     username, password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
     fetch_cities_by_state(username, password, db_name)
+
 
