@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Adds the State object "Louisiana" to the database hbtn_0e_6_usa"""
+"""Adds the State object "Louisiana" to the database test_11"""
 
 import sys
 from sqlalchemy import create_engine
@@ -23,13 +23,15 @@ def add_state(username, password, db_name):
             # Check if the state already exists
             existing_state = session.query(State).filter_by(name='Louisiana').first()
             if existing_state:
-                print("State Louisiana already exists.")
+                state_id = existing_state.id
             else:
                 # Add new state
                 new_state = State(name='Louisiana')
                 session.add(new_state)
                 session.commit()
-                print(f"New state added with id: {new_state.id}")
+                state_id = new_state.id
+
+            print(state_id)
         except Exception as e:
             print(f"An error occurred: {e}")
             session.rollback()
