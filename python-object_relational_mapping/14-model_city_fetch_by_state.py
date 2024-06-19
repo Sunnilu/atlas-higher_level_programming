@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Script that prints all City objects from the database hbtn_0e_14_usa
-"""
+'''Script that prints all City objects from the database hbtn_0e_14_usa, including their associated State names.'''
 
 import sys
 from sqlalchemy import create_engine
@@ -11,7 +9,15 @@ from model_city import City
 
 def fetch_cities_by_state(username, password, db_name):
     """
-    Fetches and prints all City objects sorted by cities.id
+    Fetches and prints all City objects sorted by cities.id, including their associated State names.
+
+    Args:
+        username (str): MySQL username.
+        password (str): MySQL password.
+        db_name (str): Name of the database to connect to.
+
+    Prints:
+        Each city's state name followed by its ID and name, sorted by city ID.
     """
     # Database connection
     engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}')
@@ -36,7 +42,7 @@ def fetch_cities_by_state(username, password, db_name):
             print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
+    if len(sys.argv)!= 4:
         print("Usage: script.py <mysql_username> <mysql_password> <database_name>")
         sys.exit(1)
 
