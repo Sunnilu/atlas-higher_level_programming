@@ -1,22 +1,29 @@
 #!/usr/bin/python3
 """Script to link a class to a table in a MySQL database."""
 
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
-from database import Base
 
-class City(Base):
-    """Class representing the 'cities' table in the database."""
-    __tablename__ = 'cities'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey('states.id'))  # Foreign key referencing states.id
-    state = relationship("State", back_populates="cities")  # Relationship with State class
+import sys
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+
+# SQLAlchemy base class
+Base = declarative_base()
 
 class State(Base):
-    """Class representing the 'states' table in the database."""
+    """
+    State class linked to the MySQL table 'states'
+    """
     __tablename__ = 'states'
-    id = Column(Integer, primary_key=True)
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     name = Column(String(128), nullable=False)
-    cities = relationship("City", back_populates="state")  # Relationship with City class
+
+if __name__ == "__main__":
+    # Establish database connection
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
+
+    # Create the table in the database
+    Base.metadata.create_all(engine)
 
