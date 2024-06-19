@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-'''Model to define the City class and its relationship with the State class.'''
+'''Class Model'''
 
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, ForeignKey
 from model_state import Base
 
 class City(Base):
