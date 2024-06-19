@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""
-Script that lists State objects based on conditions.
-"""
+'''
+Script that list all state objects that contain the letter a from the database
+using module SQLAlchemy
+'''
+
 import sys
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
@@ -44,5 +46,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
