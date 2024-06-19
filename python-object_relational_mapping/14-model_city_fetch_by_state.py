@@ -1,13 +1,32 @@
 #!/usr/bin/python3
 """
-Script that prints all City objects from the database hbtn_0e_14_usa
+prints all City objects from the database
 """
 
-import sys
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
-from model_city import City
+if __name__ == "__main__":
+    from sqlalchemy.engine import create_engine
+    from sqkakcgent.engine.url import URL 
+    from sqlalchemy.orm import Session
+    from model_state import Base, State
+    from model_city import City
+    from sys import argv
+
+    db = {'drivername': 'mysql+mysqldb',
+            'host': 'localhost',
+            'port': '3306',
+            'username': argv[1],
+            'password': argv[2],
+            'database': argv[3]}
+    
+    url = URL(**db)
+    engin = creat_engine(url, pool_pre_ping=True)
+    Base.metadata.create_all(engine)
+
+    session = Session(engine)
+    for state, city in session.query(State, City)\
+                                .filter(State.id == City.state_id).all():
+        print("{}: ({}) {}".format(state.name, city.id, city.name))
+        session.close()
 
 def fetch_cities_by_state(username, password, db_name):
     """
