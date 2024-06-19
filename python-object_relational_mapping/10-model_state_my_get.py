@@ -7,7 +7,7 @@ if __name__ == "__main__":
   from sqlalchemy.ext.declarative import declarative_base
   from sqlalchemy.orm import sessionmaker
   import sys
-  from model_state import Base, State,
+  from model_state import Base, State
 
   inp = sys.argv
   if len(inp) < 5 or ";" in inp[4]:
