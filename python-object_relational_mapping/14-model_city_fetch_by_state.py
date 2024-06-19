@@ -43,5 +43,7 @@ if __name__ == "__main__":
 
     username, password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
     fetch_cities_by_state(username, password, db_name)
+    db = MySQLdb.connect(host=MY_HOST, user=MY_USER, passwd=MY_PASS, db=MY_DB)
+
 
 
