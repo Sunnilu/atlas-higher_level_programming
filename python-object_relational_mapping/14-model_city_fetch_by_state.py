@@ -2,7 +2,7 @@
 '''Script to manage database operations for cities and states.'''
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine.url import URL
 from model_state import Base, State
 from model_city import City
@@ -22,12 +22,14 @@ if __name__ == "__main__":
     engine = create_engine(url, pool_pre_ping=True)
     Base.metadata.create_all(engine)
 
-    with Session(engine) as session:
-        try:
-            for state, city in session.query(State, City).filter(State.id == City.state_id).all():
-                print(f"{state.name}: ({city.id}) {city.name}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            session.rollback()
-        finally:
-            session.close()
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    try:
+        for state, city in session.query(State, City).filter(State.id == City.state_id).all():
+            print(f"{state.name}: ({city.id}) {city.name}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        session.rollback()
+    finally:
+        session.close()
