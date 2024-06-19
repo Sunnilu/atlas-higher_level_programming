@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State  # Adjust import as per your module structure
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
+    if len(sys.argv)!= 4:
         print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
         sys.exit(1)
 
@@ -34,21 +34,16 @@ if __name__ == "__main__":
     states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
     total_states = session.query(State).count()
 
-    # Case: 4 records + contains a
+    # Process and print results based on conditions
     if len(states_with_a) == 4:
         print("Correct output - case: 4 records + contains a")
         for state in states_with_a:
             print("{}: {}".format(state.id, state.name))
-
-    # Case: No record
     elif total_states == 0:
         print("Correct output - case: No record")
-
-    # Case: Many records + contains a
     elif len(states_with_a) > 1:
         print("Correct output - case: Many records + contains a")
         for state in states_with_a:
             print("{}: {}".format(state.id, state.name))
 
-    # Case
 
