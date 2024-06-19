@@ -21,20 +21,20 @@ if __name__ == '__main__':
     cur = db.cursor()
 
     # Prepare the SQL query with placeholders for parameters
-    query = "SELECT cities.name FROM cities INNER JOIN states ON cities.state_id = states.id WHERE states.name = %s ORDER BY cities.id ASC;"
+    query = "SELECT GROUP_CONCAT(cities.name SEPARATOR ', ') FROM cities INNER JOIN states ON cities.state_id = states.id WHERE states.name = %s ORDER BY cities.id ASC;"
 
     # Execute the query with the state name parameter
     cur.execute(query, (state,))
 
-    # Fetch all the rows
-    rows = cur.fetchall()
+    # Fetch the result
+    result = cur.fetchone()
 
-    # Print the results
-    for row in rows:
-        print(row[0])
+    # Print the result
+    if result:
+        print(result[0])
+    else:
+        print("No cities found.")
 
     # Close the cursor and connection
     cur.close()
     db.close()
-
-
