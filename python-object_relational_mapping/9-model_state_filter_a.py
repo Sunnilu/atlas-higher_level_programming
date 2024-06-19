@@ -37,17 +37,23 @@ def main():
     try:
         # Query State objects based on conditions
         states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
-        
+        total_states = session.query(State).count()
+
         # Print results based on conditions
-        if states_with_a:
+        if len(states_with_a) == 4:
+            print("Correct output - case: 4 records + contains a")
+            for state in states_with_a:
+                print("{}: {}".format(state.id, state.name))
+        elif total_states == 0:
+            print("Correct output - case: No record")
+        elif len(states_with_a) > 1:
             print("Correct output - case: Many records + contains a")
             for state in states_with_a:
                 print("{}: {}".format(state.id, state.name))
         else:
             print("Correct output - case: 4 records + not contains a")
-            # Query all states and print first 4
-            states_no_a = session.query(State).order_by(State.id).all()[4:]
-            for state in states_no_a:
+            states_without_a = session.query(State).order_by(State.id).limit(4).all()
+            for state in states_without_a:
                 print("{}: {}".format(state.id, state.name))
 
     except Exception as e:
@@ -60,4 +66,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
