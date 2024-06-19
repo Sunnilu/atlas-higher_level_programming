@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """List states"""
 
+
 import MySQLdb
 import sys
 
@@ -18,22 +19,25 @@ def list_cities_by_state(username, password, database, state_name):
 
         # Prepare SQL query with parameterized query
         query = """
-            SELECT cities.id, cities.name
-            FROM cities
-            JOIN states ON cities.state_id = states.id
-            WHERE states.name = %s
+            SELECT cities.id, cities.name 
+            FROM cities 
+            JOIN states ON cities.state_id = states.id 
+            WHERE states.name = %s 
             ORDER BY cities.id ASC
         """
-
+        
         # Execute query with parameter safely
         cursor.execute(query, (state_name,))
 
         # Fetch all rows
         rows = cursor.fetchall()
 
-        # Print results as specified
-        for row in rows:
-            print(row)
+        if not rows:
+            print(f"No cities found for state '{state_name}'")
+        else:
+            # Print results as specified
+            for row in rows:
+                print(row)
 
         # Close cursor and connection
         cursor.close()
@@ -57,4 +61,3 @@ if __name__ == "__main__":
 
     # Call function to list cities by state
     list_cities_by_state(username, password, database, state_name)
-
