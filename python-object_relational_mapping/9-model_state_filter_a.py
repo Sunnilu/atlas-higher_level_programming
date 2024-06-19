@@ -9,23 +9,17 @@ from model_state import Base, State  # Adjust this import according to your proj
 
 def connect_to_db(username, password, db_name):
     """
-    Connects to the MySQL database and returns a session object.
+    Establishes a connection to the MySQL database.
     """
     engine = create_engine(f"mysql+pymysql://{username}:{password}@localhost:3306/{db_name}")
     Session = sessionmaker(bind=engine)
     return Session()
 
-def get_states_with_a(session):
+def query_and_display_states(session):
     """
-    Queries the database for states containing the letter 'a' and returns them sorted by id.
+    Queries the database for states containing the letter 'a', sorts them, and displays them.
     """
-    result = session.query(State).filter(State.name.contains('a')).order_by(State.id.asc()).all()
-    return result
-
-def display_results(states):
-    """
-    Displays the states in the desired format.
-    """
+    states = session.query(State).filter(State.name.contains('a')).order_by(State.id.asc()).all()
     if not states:
         print("No record")
     else:
@@ -43,11 +37,11 @@ def main():
     username, password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
     session = connect_to_db(username, password, db_name)
     try:
-        states = get_states_with_a(session)
-        display_results(states)
+        query_and_display_states(session)
     finally:
         session.close()
 
 if __name__ == "__main__":
     main()
+
 
