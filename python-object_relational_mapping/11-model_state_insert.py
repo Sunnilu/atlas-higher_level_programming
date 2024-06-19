@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-''' adds the State object “Louisiana” to the database hbtn_0e_6_usa
-'''
-
+# -*- coding: utf-8 -*-
+"""Adds the State object "Louisiana" to the database hbtn_0e_6_usa"""
 
 import sys
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, exc
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State  # Adjust this import according to your project structure
 
@@ -17,11 +16,15 @@ def add_state(username, password, db_name):
     session = Session()
 
     try:
-        new_state = State(name="Louisiana")
-        session.add(new_state)
-        session.commit()
-        print(f"New state added with id: {new_state.id}")
-    except Exception as e:
+        existing_state = session.query(State).filter_by(name="Louisiana").first()
+        if existing_state:
+            print("State Louisiana already exists.")
+        else:
+            new_state = State(name="Louisiana")
+            session.add(new_state)
+            session.commit()
+            print(f"New state added with id: {new_state.id}")
+    except exc.SQLAlchemyError as e:
         print(f"An error occurred: {e}")
         session.rollback()
     finally:
