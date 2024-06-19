@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """List states"""
 
-
 import MySQLdb
 import sys
 
@@ -29,10 +28,13 @@ def list_cities_by_state(username, password, database, state_name):
         # Execute query with parameter safely
         cursor.execute(query, (state_name,))
 
-        # Fetch all rows
+        # Fetch first row (only one row should be returned)
         row = cursor.fetchone()
 
-        if row[0] is not None:
+        # Check if row is None or the value is None
+        if row is None or row[0] is None:
+            print("Empty")
+        else:
             # Print results as specified (comma-separated)
             print(row[0])
 
@@ -58,3 +60,4 @@ if __name__ == "__main__":
 
     # Call function to list cities by state
     list_cities_by_state(username, password, database, state_name)
+
