@@ -10,28 +10,33 @@ from model_state import Base, State  # Adjust import as per your module structur
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
+        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
         sys.exit(1)
 
-    # create an engine
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    # MySQL connection parameters
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
 
-    # create a configured "Session" class
+    # Create an engine
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(mysql_username, mysql_password, database_name), pool_pre_ping=True)
+
+    # Create a configured "Session" class
     Session = sessionmaker(bind=engine)
 
-    # create a Session
+    # Create a Session
     session = Session()
 
-    # Ensure tables are created
+    # Ensure tables are created (not necessary if they already exist)
     Base.metadata.create_all(engine)
 
-    # Query the first State object
-    first_state = session.query(State).first()
+    # Query the first State object ordered by id
+    first_state = session.query(State).order_by(State.id).first()
 
     if first_state:
         print("{}: {}".format(first_state.id, first_state.name))
     else:
-        print("No State objects found in the database.")
+        print("Nothing")
 
     # Close the session
     session.close()
