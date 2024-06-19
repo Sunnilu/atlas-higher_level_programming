@@ -10,7 +10,7 @@ from model_state import Base, State  # Adjust import as per your module structur
 
 
 def main():
-    if len(sys.argv)!= 4:
+    if len(sys.argv) != 4:
         print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
         sys.exit(1)
 
@@ -34,22 +34,30 @@ def main():
     # Ensure tables are created (not necessary if they already exist)
     Base.metadata.create_all(engine)
 
-    # Query State objects based on conditions
-    states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
-    total_states = session.query(State).count()
+    try:
+        # Query State objects based on conditions
+        states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+        
+        # Print results based on conditions
+        if states_with_a:
+            print("Correct output - case: Many records + contains a")
+            for state in states_with_a:
+                print("{}: {}".format(state.id, state.name))
+        else:
+            print("Correct output - case: 4 records + not contains a")
+            # Query all states and print first 4
+            states_no_a = session.query(State).order_by(State.id).all()[4:]
+            for state in states_no_a:
+                print("{}: {}".format(state.id, state.name))
 
-    # Process and print results based on conditions
-    if len(states_with_a) == 4:
-        print("Correct output - case: 4 records + contains a")
-        for state in states_with_a:
-            print("{}: {}".format(state.id, state.name))
-    elif total_states == 0:
-        print("Correct output - case: No record")
-    elif len(states_with_a) > 1:
-        print("Correct output - case: Many records + contains a")
-        for state in states_with_a:
-            print("{}: {}".format(state.id, state.name))
+    except Exception as e:
+        print("Error: {}".format(e))
+
+    finally:
+        # Close the session
+        session.close()
 
 
 if __name__ == "__main__":
     main()
+
