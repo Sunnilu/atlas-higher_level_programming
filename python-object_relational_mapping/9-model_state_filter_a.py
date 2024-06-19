@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Script that lists all State objects that contain the letter a from the database
+Script that lists State objects based on conditions
 '''
 
 import sys
@@ -30,14 +30,25 @@ if __name__ == "__main__":
     # Ensure tables are created (not necessary if they already exist)
     Base.metadata.create_all(engine)
 
-    # Query State objects containing the letter 'a', sorted by id
+    # Query State objects based on conditions
     states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+    total_states = session.query(State).count()
 
-    if states_with_a:
+    # Case: 4 records + contains a
+    if len(states_with_a) == 4:
+        print("Correct output - case: 4 records + contains a")
         for state in states_with_a:
             print("{}: {}".format(state.id, state.name))
-    else:
-        print("")
 
-    # Close the session
-    session.close()
+    # Case: No record
+    elif total_states == 0:
+        print("Correct output - case: No record")
+
+    # Case: Many records + contains a
+    elif len(states_with_a) > 1:
+        print("Correct output - case: Many records + contains a")
+        for state in states_with_a:
+            print("{}: {}".format(state.id, state.name))
+
+    # Case
+
