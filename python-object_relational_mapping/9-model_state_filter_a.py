@@ -3,7 +3,7 @@
 Script that lists State objects based on conditions.
 """
 import sys
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State  # Adjust this import according to your project structure
 
@@ -19,12 +19,13 @@ def query_and_display_states(session):
     """
     Queries the database for states containing the letter 'a', sorts them, and displays them.
     """
-    states = session.query(State).filter(State.name.contains('a')).order_by(State.id.asc()).all()
+    query = text("SELECT * FROM states WHERE name LIKE :search_term ORDER BY id ASC;")
+    states = session.execute(query, {'search_term': '%a%'}).fetchall()
     if not states:
         print("No record")
     else:
         for index, state in enumerate(states, start=1):
-            print(f"{index}: {state.name}")
+            print(f"{index}: {state['name']}")
 
 def main():
     """
