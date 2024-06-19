@@ -19,7 +19,7 @@ def list_cities_by_state(username, password, database, state_name):
 
         # Prepare SQL query with parameterized query
         query = """
-            SELECT cities.id, cities.name 
+            SELECT GROUP_CONCAT(cities.name SEPARATOR ', ') 
             FROM cities 
             JOIN states ON cities.state_id = states.id 
             WHERE states.name = %s 
@@ -30,14 +30,11 @@ def list_cities_by_state(username, password, database, state_name):
         cursor.execute(query, (state_name,))
 
         # Fetch all rows
-        rows = cursor.fetchall()
+        row = cursor.fetchone()
 
-        if not rows:
-            print(f"No cities found for state '{state_name}'")
-        else:
-            # Print results as specified
-            for row in rows:
-                print(row)
+        if row[0] is not None:
+            # Print results as specified (comma-separated)
+            print(row[0])
 
         # Close cursor and connection
         cursor.close()
