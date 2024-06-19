@@ -17,14 +17,20 @@ def fetch_cities_by_state(username, password, db_name):
     engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}')
     Session = sessionmaker(bind=engine)
 
+    # Create tables if they do not exist
+    Base.metadata.create_all(engine)
+
     # Create a session
     with Session() as session:
         try:
             # Query all City objects sorted by id
             cities = session.query(City).order_by(City.id).all()
 
-            for city in cities:
-                print(f"{city.state.name}: ({city.id}) {city.name}")
+            if cities:
+                for city in cities:
+                    print(f"{city.state.name}: ({city.id}) {city.name}")
+            else:
+                print("No cities found.")
 
         except Exception as e:
             print(f"An error occurred: {e}")
