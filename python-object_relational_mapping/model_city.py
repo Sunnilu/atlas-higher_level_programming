@@ -1,11 +1,15 @@
 #!/usr/bin/python3
-'''Class Model'''
+'''
+Class Model
+'''
 
-from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from model_state import Base
 
 class City(Base):
-    """City class to map to the cities table in the database.
+    """
+    City class to map to the cities table in the database.
 
     Attributes:
         id (int): Unique identifier for each city.
@@ -20,5 +24,5 @@ class City(Base):
 
     # Establishing relationship to State
     state = relationship("State", back_populates="cities")
-
+  
 
