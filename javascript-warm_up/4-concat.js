@@ -4,10 +4,7 @@
 const args = process.argv.slice(2);
 
 // checking if at least two arguments are passed
-if (args.length >= 2) {
-    console.log('${args[0]} fun');
-} else if (args.length === 1) {
-    console.log("args[0]");
-} else {
-    // No output for 0 arguments 
-}
+const arg1 = args[0] || 'undefined';
+const arg2 = args[1] || 'undefined';
+
+console.log('${arg1} is ${arg2}');
