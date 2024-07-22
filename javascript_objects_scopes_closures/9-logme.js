@@ -5,5 +5,5 @@ exports.logMe = function (item) {
     this.count = 0;
    }
    console.log(this.count + ': ' + item);
-   this.cont++;
+   this.count++;
 };
