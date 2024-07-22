@@ -8,7 +8,6 @@ const messages = [
 // variable to accumulate the final output
 let output = '';
 
-for (const message of messages) {
-    output += '${messages}\n';
+for (let i = 0; i < lines.length; i++) {
+    consol.e.log(lines[i]);
 }
-console.log(output.trim());
