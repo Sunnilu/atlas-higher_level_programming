@@ -9,6 +9,6 @@ const messages = [
 let output = '';
 
 for (const message of messages) {
-    output += '${message}\n';
+    output += '${messages}\n';
 }
 console.log(output.trim());
